@@ -1,0 +1,79 @@
+.log-page {
+    width: 100%;
+    height: 73vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .log__form-container {
+        background-color: rgba(181, 181, 181, 0.442);
+        box-shadow: 0rem 0.21rem 0.4rem rgba(0, 0, 0, 0.21);
+        width: 24rem;
+        height: 20rem;
+        border-radius: 2.3rem;
+
+        .log__form {
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            margin-top: 0.21rem;
+            .form__label {
+                width: 100%;
+                padding: 0.8rem 0 1.1rem 0;
+                text-align: center;
+                margin: 0.9rem 0 0 0;
+                letter-spacing: 0.1rem;
+                font-size: 1.8rem;
+                text-shadow: 0.02rem 0.04rem 0.1rem rgba(0, 0, 0, 0.3);
+            }
+
+            .form__input-containers {
+                width: 100%;
+                height: 90%;
+                gap: 0.3rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .form__input-container {
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .input__label{
+                        z-index: 1;
+                        margin-bottom: 0.2rem;
+                        width: 89%;
+                        font-size: 0.8rem;
+                        letter-spacing: 0.03rem;
+                    }
+                    .form__input {
+                        width: 90%;
+                        border-radius: 0.3rem;
+                        border: none;
+                        box-shadow: 0rem 0.03rem 0.21rem rgba(0, 0, 0, 0.3);
+                        font-size: 1.03rem;
+                        height: 2.25rem;
+                        padding-left: 0.8rem;
+                    }
+                }
+            }
+
+            .form__button {
+                margin: 2rem 0 2.4rem 0;
+                font-size: 1.3rem;
+                text-align: center;
+                width: 45%;
+                padding: 0.5rem 1rem 0.5rem 1rem;
+                border-radius: 0.5rem;
+                border: none;
+                box-shadow: 0rem 0.18rem 0.4rem rgba(0, 0, 0, 0.097);
+                background: none;
+            }
+        }
+    }
+}
