@@ -40,15 +40,16 @@ export const authOptions: NextAuthOptions = {
                 const userDb = await fetchRedis('smembers', `user:${credentials.username}`)
 
                 console.log('cred user',userDb)
-                if (!userDb)
-                    throw new Error('user not found')
+                if (!userDb.at(0))
+                    return null
 
                 const user = JSON.parse(userDb)
 
                 const passwordsMatch: Boolean = await bcrypt.compare(credentials.password, user.password)
 
                 if (!passwordsMatch)
-                    throw new Error('invalid password')
+                    return null
+                
                 return user
             }
         })
@@ -71,7 +72,7 @@ export const authOptions: NextAuthOptions = {
             }
             console.log('session jwt 1',session)
             return session
-        }
+        },
     }
 
 }

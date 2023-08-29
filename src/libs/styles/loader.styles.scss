@@ -1,0 +1,39 @@
+.loader-body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: rgba(248, 248, 243, 0.499);
+    // background-color: black;
+
+    .loader{
+        margin-bottom: 15vh;
+        .loader-dot{
+            width: 1rem;
+            height: 1rem;
+            margin: 0 0.29rem;
+            border-radius: 50%;
+            display: inline-block;
+            
+            background-color: rgba(178, 13, 178, 0.616);
+
+            animation-name: dots;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+        .loader-dot:nth-child(2){
+            animation-delay: 0.4s;
+        }
+        .loader-dot:nth-child(3){
+            animation-delay: 0.8s;
+        }
+        @keyframes dots{
+            10%{
+                opacity:0;
+                transform: scale(0.7) translateY(3px);
+            }
+
+        }
+    }
+}

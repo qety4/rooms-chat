@@ -1,0 +1,35 @@
+.navbar {
+    margin: 0.01rem 0 0 0;
+    width: 100%;
+    display: grid;
+    font-size: 1.3rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-weight: 480;
+    text-align: center;
+    letter-spacing: 0.13rem;
+    text-transform: uppercase;
+    .nav-middle {
+        box-sizing: border-box;
+
+        a {
+            color: rgb(217, 18, 217);
+            text-shadow: 0.23px 0.18px 0.9px rgba(217, 18, 217, 0.338) ;
+        }
+    }
+
+    .nav-right {
+        box-sizing: border-box;
+
+        a {}
+    }
+
+    .nav-left {
+        box-sizing: border-box;
+
+        a {
+            color: rgb(217, 18, 217);
+
+
+        }
+    }
+}

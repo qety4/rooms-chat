@@ -1,6 +1,12 @@
 import React from 'react'
+async function wait(ms:number){
+  return new Promise(resolve=>setTimeout(resolve,ms))
+}
 
-function page() {
+async function page() {
+  await wait(10000)
+
+
   return (
     <div>//// page</div>
   )

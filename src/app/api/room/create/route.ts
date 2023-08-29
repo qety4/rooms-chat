@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/libs/auth'
 import { db } from '@/libs/db'
+import { fetchRedis} from '@/helper/redis'
+import { timeStamp } from 'console'
 
 export async function POST() {
     try {
@@ -11,13 +13,30 @@ export async function POST() {
         if (!session)
             return new Response('Unauthorized', { status: 401 })
 
-        const roomId = nanoid()
-        
-        await db.sadd(`user:${session.user.name}:rooms`,roomId)
-        await db.sadd(`room:${roomId}:users`, session.user.name)
-        await db.sadd(`rooms:roomlist`, roomId)
+        const username = session.user.name
+        const userRoomsDb = await fetchRedis('zrange',`user:${username}:rooms` , 0, -1) as string[] 
+        console.log('zrange user rooms',userRoomsDb)
 
-        return new Response(`${roomId}`,{status:200})
+        if ( userRoomsDb?.length === 10)
+            return new Response('User room limit exceeded', { status: 200 })
+
+        const timestamp = Date.now()
+        const roomId = nanoid()
+
+
+        await db.zadd(`user:${session.user.name}:rooms`, {
+            score: timestamp,
+            member:roomId
+        })
+
+        await db.zadd(`room:${roomId}:users`, {
+            score: timestamp,
+            member: session.user.name
+        })
+
+        await db.sadd(`rooms:roomlist`,roomId)
+
+        return new Response(`${roomId}`, { status: 200 })
 
     } catch (e) {
 

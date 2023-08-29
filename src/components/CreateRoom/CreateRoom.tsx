@@ -3,24 +3,24 @@
 import axios, { AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import '@/libs/styles/createRoom.styles.scss'
 
 type JoinRoomProps = {
-    userRooms: string
+    userRooms: string[]
 }
 
-function CreateRoom({userRooms}:JoinRoomProps) {
+function CreateRoom() {
     const router = useRouter()
 
     const onSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
         try{
             e.preventDefault()
-            if(userRooms.length>5)
-                return 'Exceeded Amount of Rooms'
             const res = (await axios.post('/api/room/create'))
+            console.log(res)
+            
             if(res.status !== 200)
                 return 'server error'
 
-            console.log(res)
             const roomId = res.data
 
             return router.push(`/room/${roomId}`)
@@ -31,9 +31,10 @@ function CreateRoom({userRooms}:JoinRoomProps) {
     }
 
     return (
-        <div>
-            <form action="" onSubmit={onSubmit}>
-                <button>create room</button>
+        <div className='create-room__form-container'>
+            <form action="" className='create-room__form' onSubmit={onSubmit}>
+                <h3 className='create-room__title'>Create Room</h3>
+                <button className='create-room__btn'>create room</button>
             </form>
         </div>
     )
