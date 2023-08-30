@@ -59,8 +59,8 @@ function ChatMessages({ roomId, initialMessages, sendername }: ChatMessagesProps
                             <div className={`message__about ${isCurrentUser ? 'about-right' : 'about-left'}`}>
                                 <p className='message__user'>{message.senderUsername}</p>
                                 <div className='message__timestamp'>
-                                    <p>{minutes}</p>
-                                    <p>/{days}</p>
+                                    <p className='minutes'>{minutes}</p>
+                                    <p className='days'>/{days}</p>
                                 </div>
                             </div>
                         </div>

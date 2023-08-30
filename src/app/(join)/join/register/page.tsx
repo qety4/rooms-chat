@@ -9,6 +9,7 @@ import { registerValidator } from '@/libs/validators/registerValidator'
 import { useRouter } from 'next/navigation'
 import { z } from 'zod'
 import { passwordPattern } from '@/libs/regex'
+import { Eye,EyeOff } from 'lucide-react'
 
 
 
@@ -16,6 +17,7 @@ import { passwordPattern } from '@/libs/regex'
 type FormData = z.infer<typeof registerValidator>
 
 function RegisterPage() {
+    const [visible, setVisible] = useState<boolean>(false)
 
     const router = useRouter()
 
@@ -23,16 +25,20 @@ function RegisterPage() {
         register,
         handleSubmit,
         setError,
+        reset,
         formState: { errors }
     } = useForm<FormData>({
         resolver: zodResolver(registerValidator),
     })
 
 
+    const login = () => {
+        router.push('/join/login')
+    }
 
     const onRegister = async (email: string, username: string, password: string) => {
         try {
-            if(!password.match(passwordPattern))
+            if (!password.match(passwordPattern))
                 throw new Error('Password must contain at least 8 chracters, a number, one special chracter, and an uppercase letter')
 
             const res = await axios.post('/api/user/register', {
@@ -42,6 +48,10 @@ function RegisterPage() {
             })
             console.log(res)
 
+            reset()
+            setError('username', { message: 'succesfully registered' })
+
+            setTimeout(() => router.push('/join/login'), 2000)
 
         } catch (error) {
             if (error instanceof z.ZodError) {
@@ -83,10 +93,15 @@ function RegisterPage() {
                         </div>
                         <div className='form__input-container'>
                             <label htmlFor="" className='input__label'>password</label>
-                            <input type="placeholder" placeholder='enter password...'
+                            <input
+                                type={visible ? 'text' : 'password'}
+                                placeholder='enter password...'
                                 {...register('password')}
                                 className='form__input'
                             />
+                            <div className='visible' onClick={()=>setVisible((prev)=>!prev)}>
+                                {visible ? <EyeOff /> : <Eye />}
+                            </div>
                         </div>
                         <div className='form__input-container'>
                             <label htmlFor="" className='input__label'>email</label>
@@ -98,8 +113,11 @@ function RegisterPage() {
                         </div>
                     </div>
                     <button className='form__button'>submit</button>
+                    <div className='log__form__redirect'>
+                        <p className='log__form__register' onClick={login}>login</p>
+                    </div>
                 </form>
-                    <p>{errors.email?.message || errors.username?.message || errors.password?.message}</p>
+                <p className='log__form__error'>{errors.email?.message || errors.username?.message || errors.password?.message}</p>
             </div>
         </main>
     )

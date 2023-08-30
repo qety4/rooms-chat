@@ -28,7 +28,7 @@ function ChatInput({ roomId }: { roomId: string }) {
     return (
         <div className='chatInput-container'>
             <TextareaAutosize
-                className='chatInput'
+                className={`chatInput ${input !== '' && 'inputActive'}`}
                 name=""
                 id=""
                 onKeyDown={(e) => {

@@ -4,12 +4,11 @@ import SignOutButton from '@/components/SignOutButton/SignOutButton'
 import { fetchRedis } from '@/helper/redis'
 import { authOptions } from '@/libs/auth'
 import { getServerSession } from 'next-auth'
-import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import '@/libs/styles/userPage.styles.scss'
 import { notFound } from 'next/navigation'
-
+import UserRooms from '@/components/User/UserRooms'
 
 async function UserPage() {
 
@@ -32,17 +31,8 @@ async function UserPage() {
         </div>
         <SignOutButton />
         <div className='user__rooms-container'>
-          <div className='user__rooms'>
-            {rooms.at(0) ?
-              rooms.map((room: string) =>
-                <Link key={room} href={`/room/${room}`}>
-                  <p className='room-link'>{room} </p>
-                </Link>
-              )
-              :
-              <p>You have no rooms availible</p>
-            }
-          </div>
+          <h3 className='user__rooms__title'>your rooms</h3>
+          <UserRooms initialRooms={rooms} userName={session.user.name!}/>
         </div>
         <Link href='/room' >
           <p className='other-rooms-title'>

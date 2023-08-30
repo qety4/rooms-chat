@@ -14,10 +14,11 @@ export async function POST(req: Request) {
         if (!email && !username && !password)
             return new Response('Invalid Data',{status:400})
 
-        const userExists = await fetchRedis('smembers',`user:${username}`)
+        const emailExists = await fetchRedis('sismember',`rooms:users`, email!)
+        const userNameExists = await fetchRedis('smembers',`user:${username}`)
 
-            console.log('userExists',userExists)
-        if (userExists.at(0))
+            console.log('userExists',userNameExists,emailExists)
+        if (userNameExists.at(0) && emailExists)
             return new Response('user already exists in', { status: 400 })
 
         const passwordEnc = await bcrypt.hash(password!,10)
@@ -29,6 +30,8 @@ export async function POST(req: Request) {
             password: passwordEnc,
             createdAt:timestamp
         }
+
+        await db.sadd(`rooms:users`,email)
 
         await db.sadd(`user:${username}`,userDb)
 

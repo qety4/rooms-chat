@@ -85,11 +85,12 @@
         margin-top: 0.2rem;
         position: absolute;
         width: 29%;
-        background-color: rgba(172, 0, 172, 0.581);
-        box-shadow: 0.01px 0.08px 0.09px rgb(0, 0, 0);
+        // background-color: rgba(172, 0, 172, 0.581);
+        background-color:#4313505d;
+        box-shadow: 0.01px 0.8px 1.3px #9710bcbc;
         // width: 10rem;
-        border-radius: 1px 9px 8px 3px;
-
+        border-radius: 1px 19px 13px 3px;
+        border: none;
         .users__title-container {
             color: white;
 

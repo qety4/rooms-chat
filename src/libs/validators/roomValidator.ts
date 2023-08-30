@@ -1,5 +1,5 @@
 import {z} from 'zod'
 
 export const roomValidator = z.object({
-    room:z.string().length(21)
+    room:z.string().nonempty('enter a valid room').length(21)
 })

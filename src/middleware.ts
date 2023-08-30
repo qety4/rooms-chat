@@ -12,17 +12,20 @@ export default withAuth(
         const sensitiveRoutes = ['/','/join','/user','/room']
         const accesingSensitiveRoutes = sensitiveRoutes.some((route)=>pathname.startsWith(route))
 
-        if(isLoginPage || rootPage){
+        if(isLoginPage){
             if(isAuth){
                 return NextResponse.redirect(new URL('/user',req.url))
             }
-            
+            return
+        }
+
+        if(rootPage){
+            return NextResponse.redirect(new URL('/join/login',req.url))
         }
 
        if(!isAuth && accesingSensitiveRoutes){
         return NextResponse.redirect(new URL('/join/login',req.url))
        }
-
     },
     {
     callbacks:{
