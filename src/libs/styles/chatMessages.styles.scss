@@ -5,7 +5,6 @@
     overflow-y: scroll;
     scrollbar-width: 0.1px;
     overflow-x: hidden;
-    // border: solid 1px black;
     display: flex;
     padding-bottom: 10vh;
     flex-direction: column-reverse;
@@ -27,11 +26,10 @@
             width: 100%;
 
             .message__text {
-                // border: solid rgba(0, 0, 0, 0.046) 0.1px;
                 letter-spacing: 0.3px;
                 box-shadow: 0.1px 0.5px 1.3px #8409a7d8;
-                padding: 5.8px 10.8px;
-                font-size: 15.8px;
+                padding: 0.38em 0.8em;
+                font-size: clamp(15.8px, 0.8vw, 1.1rem);
                 height: fit-content;
                 max-width: 80%;
             }

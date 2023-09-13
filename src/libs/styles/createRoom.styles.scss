@@ -4,9 +4,8 @@
     justify-content: center;
     width: 230px;
     height: 200px;
-    // background-color: gray;
     box-shadow: 0 1.8px 5px #b31bdd58;
-
+    margin-top: 3vh;
     border-radius: 0.3rem;
 
     .create-room__form {
@@ -22,8 +21,6 @@
             position: absolute;
             top: 0.8rem;
             letter-spacing: 2px;
-
-            // transform: translate(0,-3.8rem);
             text-align: center;
         }
 
@@ -35,12 +32,11 @@
             background: none;
             bottom: 4rem;
             margin-top: 1rem;
-            padding: 1rem 3rem;
+            padding: 1em 2.8em;
             border-radius: 1.3rem;
             border: none;
             transition: .1s linear;
 
-            // box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.061);
             &:hover {
                 box-shadow: 0 2px 5px #b31bdd6e;
             }
