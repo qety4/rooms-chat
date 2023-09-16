@@ -46,7 +46,6 @@ function RegisterPage() {
                 username: username,
                 password: password,
             })
-            console.log(res)
 
             reset()
             setError('username', { message: 'succesfully registered' })
@@ -55,7 +54,6 @@ function RegisterPage() {
 
         } catch (error) {
             if (error instanceof z.ZodError) {
-                console.log(error)
                 setError('email', { message: error.message })
                 return
             }
@@ -69,8 +67,6 @@ function RegisterPage() {
     }
 
     const onSubmit = (formData: FormData) => {
-        console.log(formData)
-
         onRegister(formData.email, formData.username, formData.password)
     }
 

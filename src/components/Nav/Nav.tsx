@@ -12,7 +12,6 @@ function Nav() {
     // const segment = useSelectedLayoutSegment()
     const { data: session, status } = useSession()
     const params = usePathname()
-    console.log('params', params)
     const isLoggedIn = status == 'authenticated'
 
     return (

@@ -18,7 +18,6 @@ export async function fetchRedis(
     }
     )
     const data = await response.json()
-    console.log(`fetch data {${args}}`, data)
 
     if (response.status !== 200) {
         throw new Error(`Error executing Redis command ${command}`)
@@ -27,18 +26,3 @@ export async function fetchRedis(
 
     return data.result
 }
-
-// async function getChatMessages(roomId: string) {
-//     try {
-//       const results: string[] = await fetchRedis('zrange', `room:${roomId}:messages`, 0, -1)
-  
-//       const dbMessages = results.map((message) => JSON.parse(message) as Message)
-  
-//       const messagesRev = messageArrayValidator.parse(dbMessages)
-//       const messages = messagesRev.reverse()
-//       console.log('getChatMessages', messages)
-//       return messages
-//     } catch (e) {
-//       notFound()
-//     }
-//   }

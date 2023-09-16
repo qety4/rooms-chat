@@ -33,13 +33,12 @@ export const authOptions: NextAuthOptions = {
                 }
             },
             async authorize(credentials) {
-                console.log('cred', credentials)
+
                 if (!credentials?.email && !credentials?.username)
                     throw new Error('bad input')
-                console.log('after passwird checl')
+
                 const userDb = await fetchRedis('smembers', `user:${credentials.username}`)
 
-                console.log('cred user',userDb)
                 if (!userDb.at(0))
                     return null
                 
@@ -70,7 +69,6 @@ export const authOptions: NextAuthOptions = {
                 session.user.name= token.name
                 session.user.email=token.email
             }
-            console.log('session jwt 1',session)
             return session
         },
     }

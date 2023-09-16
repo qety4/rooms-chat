@@ -16,7 +16,6 @@ function UserRooms({ initialRooms,userName }: { initialRooms: string[],userName:
 
         const deleteHandler = (roomId: string) => {
             setRooms((prev) => prev.filter((room)=> room !== roomId))
-            console.log('new message')
         }
 
         pusherClient.bind('delete_room', deleteHandler)
@@ -31,8 +30,8 @@ function UserRooms({ initialRooms,userName }: { initialRooms: string[],userName:
     return (
         <div className='user__rooms'>
             {rooms.at(0) ?
-                rooms.map((room: string) =>
-                    <div className='room-link-body'>
+                rooms.map((room: string,index) =>
+                    <div className='room-link-body' key={`${room}-${index}`}>
                         <Link key={room} href={`/room/${room}`}>
                             <p className='room-link'>{room} </p>
                         </Link>

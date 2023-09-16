@@ -22,12 +22,12 @@ export async function POST(req: Request) {
 
         const username = session.user.name
         const userRoomsDb =await fetchRedis('zrange',`user:${username}:rooms` , 0, -1) as string[]
-
-        if(userRoomsDb.length===10)
-            return new Response('User room limit exceeded',{status:200})
-
+        
         if(userRoomsDb.includes(roomId))
             return new Response('User Already in Room', {status:201})
+
+        if(userRoomsDb.length===10)
+            return new Response('User room limit exceeded',{status:400})
 
         const timestamp = Date.now()
 

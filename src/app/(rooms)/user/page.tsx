@@ -17,9 +17,6 @@ async function UserPage() {
 
   const rooms = await fetchRedis('zrange', `user:${session.user.name}:rooms`, 0, -1) as string[]
 
-  console.log('rooms', rooms)
-  console.log('session client', session)
-
   return (
     //make a sorted set
     // delete rooms functionality

@@ -23,7 +23,6 @@ async function getChatMessages(roomId: string) {
 
     const messagesRev = messageArrayValidator.parse(dbMessages)
     const messages = messagesRev.reverse()
-    console.log('getChatMessages', messages)
     return messages
   } catch (e) {
     notFound()
@@ -41,11 +40,6 @@ async function RoomChat({ params }: RoomChatProps) {
 
   const initialMessages = await getChatMessages(roomId)
   const participants = await fetchRedis('zrange', `room:${roomId}:users`, 0, -1) as string[]
-
-  console.log('init messages', initialMessages)
-  console.log('params', roomId)
-  console.log('roomId session', session)
-
 
   return (
     <main>

@@ -11,22 +11,24 @@ type JoinRoomProps = {
 
 function CreateRoom() {
     const router = useRouter()
-
+    const [error,setError] = useState<string>()
     const onSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
         try{
             e.preventDefault()
             const res = (await axios.post('/api/room/create'))
-            console.log(res)
             
-            if(res.status !== 200)
-                return 'server error'
+            if(res.status === 400 )
+                throw new Error('limit of rooms exceeded')
 
+            if(res.status !== 200)
+                throw new Error('internal server error')
+            
             const roomId = res.data
 
             return router.push(`/room/${roomId}`)
 
         }catch(e){
-
+            setError(e as string)
         }
     }
 
@@ -36,6 +38,7 @@ function CreateRoom() {
                 <h3 className='create-room__title'>Create Room</h3>
                 <button className='create-room__btn'>create room</button>
             </form>
+            <p>{error}</p>
         </div>
     )
 }

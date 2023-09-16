@@ -18,7 +18,7 @@ function DeleteModal({ roomId }: { roomId: string }) {
             })
             onClose()
         }catch(e){
-            console.log('delete',e)
+            
         }
     }
 

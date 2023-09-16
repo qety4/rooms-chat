@@ -7,7 +7,6 @@ export default withAuth(
         const pathname = req.nextUrl.pathname
         const isAuth = await getToken({req})
         const isLoginPage = pathname.startsWith('/join')
-        console.log('pathname',pathname)
         const rootPage = pathname === ('/')
         const sensitiveRoutes = ['/','/join','/user','/room']
         const accesingSensitiveRoutes = sensitiveRoutes.some((route)=>pathname.startsWith(route))

@@ -9,7 +9,6 @@ export async function POST(req: Request) {
     try {
         const data = await req.json()
         const { email, username, password } = data as User
-        console.log('reg data', data)
 
         if (!email && !username && !password)
             return new Response('Invalid Data',{status:400})
@@ -17,7 +16,6 @@ export async function POST(req: Request) {
         const emailExists = await fetchRedis('sismember',`rooms:users`, email!)
         const userNameExists = await fetchRedis('smembers',`user:${username}`)
 
-            console.log('userExists',userNameExists,emailExists)
         if (userNameExists.at(0) && emailExists)
             return new Response('user already exists in', { status: 400 })
 

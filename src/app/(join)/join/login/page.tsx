@@ -42,14 +42,12 @@ export default function Login() {
         password: password,
         redirect: false
       })
-      console.log('res', res)
       if (res!.error) {
         throw new Error('invalid credentials')
       }
       router.push('/user')
     } catch (error) {
       if (error instanceof z.ZodError) {
-        console.log(error)
         setError('username', { message: error.message })
         return
       }

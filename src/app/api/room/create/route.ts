@@ -15,10 +15,9 @@ export async function POST() {
 
         const username = session.user.name
         const userRoomsDb = await fetchRedis('zrange',`user:${username}:rooms` , 0, -1) as string[] 
-        console.log('zrange user rooms',userRoomsDb)
 
         if ( userRoomsDb?.length === 10)
-            return new Response('User room limit exceeded', { status: 200 })
+            return new Response('User room limit exceeded', { status: 400 })
 
         const timestamp = Date.now()
         const roomId = nanoid()
@@ -39,6 +38,6 @@ export async function POST() {
         return new Response(`${roomId}`, { status: 200 })
 
     } catch (e) {
-
+        return new Response('Internal server error',{status: 500})
     }
 }

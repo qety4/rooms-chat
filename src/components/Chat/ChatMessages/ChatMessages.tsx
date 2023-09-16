@@ -29,7 +29,6 @@ function ChatMessages({ roomId, initialMessages, sendername }: ChatMessagesProps
 
         const messageHandler = (message: Message) => {
             setMessages((prev) => [message, ...prev])
-            console.log('new message')
         }
 
         pusherClient.bind('incoming_message', messageHandler)
@@ -50,7 +49,6 @@ function ChatMessages({ roomId, initialMessages, sendername }: ChatMessagesProps
                     messages[index - 1]?.senderUsername === messages[index].senderUsername
                     const timestamp = formatTimestamp(message.timestamp)
                     const [minutes, days] = timestamp.split('/')
-                    console.log('isCurrentUser', isCurrentUser)
                     return (
 
                         <div className={`message__body ${hasNextMessageFromSameUser ? 'invisible' : ''} ${isCurrentUser ? 'right' : 'left'} `} key={`${message.id}-${message.timestamp}`} >

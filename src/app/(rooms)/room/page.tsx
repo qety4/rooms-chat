@@ -15,7 +15,6 @@ async function Room() {
   const session = await getServerSession(authOptions)
   if (!session) notFound()
   const username = session.user.name
-  console.log('room username', username)
 
   return (
     <main className='room'>

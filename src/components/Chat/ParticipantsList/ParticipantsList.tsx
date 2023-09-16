@@ -16,7 +16,6 @@ function ParticipantsList({ initialParticipants, roomId }: { initialParticipants
         )
         const usersHandler = (user: string) => {
             setUsers((prev) => [user, ...prev])
-            console.log('new user joined')
         }
 
         pusherClient.bind('new_user', usersHandler)

@@ -4,6 +4,7 @@ import React from 'react'
 import '@/libs/styles/signOutBtn.styles.scss'
 
 function SignOutButton() {
+
     const signOutBtn = async()=>{
         try{
             await signOut()
