@@ -44,19 +44,21 @@ function ChatMessages({ roomId, initialMessages, sendername }: ChatMessagesProps
     return (
         <div ref={scrollDownRef} className='messages'>
             {
-                messages.map((message) => {
+                messages.map((message, index) => {
                     const isCurrentUser = message.senderUsername === sendername
+                    const hasNextMessageFromSameUser =
+                    messages[index - 1]?.senderUsername === messages[index].senderUsername
                     const timestamp = formatTimestamp(message.timestamp)
                     const [minutes, days] = timestamp.split('/')
                     console.log('isCurrentUser', isCurrentUser)
                     return (
 
-                        <div className='message__body' key={`${message.id}-${message.timestamp}`} >
-                            <div className={`message__text-container ${isCurrentUser ? ' text-right' : 'text-left'}`}>
+                        <div className={`message__body ${hasNextMessageFromSameUser ? 'invisible' : ''} ${isCurrentUser ? 'right' : 'left'} `} key={`${message.id}-${message.timestamp}`} >
+                            <div className='message__text-container'>
                                 <p className='message__text'>{message.text}
                                 </p>
                             </div>
-                            <div className={`message__about ${isCurrentUser ? 'about-right' : 'about-left'}`}>
+                            <div className='message__about'>
                                 <p className='message__user'>{message.senderUsername}</p>
                                 <div className='message__timestamp'>
                                     <p className='minutes'>{minutes}</p>

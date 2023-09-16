@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
                 console.log('cred user',userDb)
                 if (!userDb.at(0))
                     return null
-
+                
                 const user = JSON.parse(userDb)
 
                 const passwordsMatch: Boolean = await bcrypt.compare(credentials.password, user.password)

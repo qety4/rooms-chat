@@ -80,7 +80,6 @@
                 padding: 0.5rem 1rem 0.5rem 1rem;
                 border-radius: 0.5rem;
                 border: none;
-                // box-shadow: 0rem 0.18rem 0.4rem rgba(0, 0, 0, 0.097);
                 box-shadow: 0px 0.9px 3.1px #8509a77b;
                 background: none;
                 transition: .1s linear;
@@ -102,13 +101,12 @@
                 display: flex;
                 justify-content: flex-end;
                 bottom: 0.8rem;
-
+                
                 p {
-                    
+                    cursor: pointer;
                     color: white;
                     -webkit-text-stroke: 0.8px rgb(0, 0, 0);
                     text-shadow: 0.3px 0.8px 1px rgba(0, 0, 0, 0.368);
-                    // text-decoration: underline;
                     font-size: 18px;
                 }
                 .log__form__demo{
